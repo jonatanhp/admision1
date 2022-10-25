@@ -13,6 +13,8 @@ import javax.persistence.OneToOne;
 import javax.persistence.PrimaryKeyJoinColumn;
 import javax.persistence.Table;
 
+import org.hibernate.annotations.Cascade;
+
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
@@ -29,6 +31,11 @@ public class Persona {
 	@Id
 	@Column(name = "id_user")
 	private Integer id;
+	
+	@ManyToOne
+	
+	@JoinColumn(name = "id_ubigeo", nullable = false)
+	private Ubigeo ubigeo;
 	
 	@ApiModelProperty(notes = "campo nombre/nombres, campo obligatorio , para la busqueda convertir a UPPER")
 	@Column(name = "nombre", nullable = false, length = 100)
@@ -50,6 +57,38 @@ public class Persona {
 	@Column(name = "sexo", nullable = false, length = 2)
 	private String sexo;
 	
+	public String getSexo() {
+		return sexo;
+	}
+
+	public void setSexo(String sexo) {
+		this.sexo = sexo;
+	}
+
+	public Ubigeo getUbigeo() {
+		return ubigeo;
+	}
+
+	public void setUbigeo(Ubigeo ubigeo) {
+		this.ubigeo = ubigeo;
+	}
+
+	public Paciente getPaciente() {
+		return paciente;
+	}
+
+	public void setPaciente(Paciente paciente) {
+		this.paciente = paciente;
+	}
+
+	public Medico getMedico() {
+		return medico;
+	}
+
+	public void setMedico(Medico medico) {
+		this.medico = medico;
+	}
+
 	@ApiModelProperty(notes = "campo direccion, campo obligatorio")
 	@Column(name = "direccion", nullable = false, length = 200)
 	private String direccion;
@@ -63,9 +102,9 @@ public class Persona {
 	private String telefono;
 	
 	
-	@ManyToOne
-	@JoinColumn(name = "id_ubigeo", nullable = false)
-	private Ubigeo ubigeo;
+	
+	
+	
 	
 	@JsonSerialize(using = ToStringSerializer.class)
 	private LocalDateTime fecha_registro;
