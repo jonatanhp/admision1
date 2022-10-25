@@ -45,7 +45,7 @@ public class PersonaController {
 	private IUsuarioService uservice;
 	
 	//@@PreAuthorize("@restAuthService.hasAccess('listar')")
-	@PreAuthorize("hasAuthority('COORDINADOR') or hasAuthority('ADMIN')")
+	//@PreAuthorize("hasAuthority('COORDINADOR') or hasAuthority('ADMIN')")
 	@GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<List<Persona>> listar(){
 		List<Persona> personas = new ArrayList<>();
