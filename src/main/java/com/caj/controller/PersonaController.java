@@ -77,8 +77,8 @@ public class PersonaController {
 		return ResponseEntity.created(location).build();
 	}
 	
-	@PostMapping(value = "/regdocente", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
-	public ResponseEntity<Object> registrarDocente(@Valid  @RequestBody RegistrarPersonaParticular personaParticularDTO){
+	@PostMapping(value = "/regmedico", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+	public ResponseEntity<Object> registrarMedico(@Valid  @RequestBody RegistrarPersonaParticular personaParticularDTO){
 		Persona persona = new Persona();
 		persona = service.registrarParticular(personaParticularDTO);
 		URI location = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(persona.getId()).toUri();
