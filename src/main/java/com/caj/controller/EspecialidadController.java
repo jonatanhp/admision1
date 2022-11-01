@@ -28,7 +28,8 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 import com.caj.exception.ModelNotFoundException;
 
 import com.caj.model.Especialidad;
-
+import com.caj.model.Medico;
+import com.caj.model.Persona;
 import com.caj.service.IEspecialidadService;
 
 @RestController
@@ -51,6 +52,21 @@ public class EspecialidadController {
 		
 		
 	}
+	
+	
+	@GetMapping(value = "/{id}/medicos", produces = MediaType.APPLICATION_JSON_VALUE)
+	public ResponseEntity<List<Persona>> listMedicos(@PathVariable("id") Integer id){
+		
+		List<Persona> medicos = new ArrayList<>();
+		
+		medicos = service.medicosPorEspecialidad(id);
+		System.out.println(medicos);
+		
+		return new ResponseEntity<List<Persona>>(medicos, HttpStatus.OK);
+		
+		
+	}
+	
 	
 	@GetMapping(value = "/{id}")
 	public EntityModel<Optional<Especialidad>> listById(@PathVariable("id") Integer id){
@@ -95,7 +111,7 @@ public class EspecialidadController {
 		service.modificar(specialty);
 		//URI location = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(patient.getIdPatient()).toUri();
 		//return new ResponseEntity<Object>(HttpStatus.OK);
-		return  ResponseEntity.ok("actualizado " + specialty.getIdEspecialidad());
+		return new ResponseEntity<Object>(HttpStatus.OK);
 	}
 	
 	@DeleteMapping(value = "/{id}", produces = MediaType.APPLICATION_JSON_VALUE)

@@ -1,5 +1,8 @@
 package com.caj.model;
 
+import java.time.LocalDateTime;
+import java.util.Date;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -7,6 +10,11 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.validation.constraints.Size;
+
+import org.springframework.data.annotation.CreatedDate;
+
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import com.fasterxml.jackson.databind.ser.std.ToStringSerializer;
 
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
@@ -24,6 +32,12 @@ public class Especialidad {
 	@Size(min= 3, message = "minimo 3 caracteres")
 	@Column(name = "name", nullable=false, length=200 )
 	private String name;
+	
+	
+	
+	@CreatedDate
+	@JsonSerialize(using = ToStringSerializer.class)
+	private LocalDateTime fechaCreacion;
 	
 	
 
