@@ -23,6 +23,8 @@ public interface IPersonaService extends ICRUD<Persona> {
 	
 	List<Persona> buscar(FiltroConsultaPersona filtroConsultaPersonaDTO);
 	
+	List<Object[]> search(FiltroConsultaPersona filtroConsultaPersonaDTO);
+	
 	
 	Usuario usuarioPorPersonaId(Integer idPersona);
 	
