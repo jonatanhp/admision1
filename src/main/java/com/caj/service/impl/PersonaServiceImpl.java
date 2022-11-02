@@ -184,6 +184,12 @@ public class PersonaServiceImpl implements IPersonaService {
 		// TODO Auto-generated method stub
 		return dao.buscar2(filtroConsultaPersonaDTO.getDni(), filtroConsultaPersonaDTO.getNombreCompleto());
 	}
+
+	@Override
+	public Page<Persona> listPageable(Pageable pageable) {
+		// TODO Auto-generated method stub
+		return dao.findAll(pageable);
+	}
 	
 	 
 	
