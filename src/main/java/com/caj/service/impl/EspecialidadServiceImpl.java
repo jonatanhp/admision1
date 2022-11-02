@@ -70,7 +70,13 @@ public class EspecialidadServiceImpl implements IEspecialidadService {
 				m.setId((Integer.parseInt(String.valueOf(x[0]))));
 				m.setApelPat(String.valueOf(x[1]));
 				m.setApelMat(String.valueOf(x[2]));
+				m.setCorreo(String.valueOf(x[3]));
+				m.setDireccion(String.valueOf(x[4]));
+				m.setDni(String.valueOf(x[5]));
+				m.setNombre(String.valueOf(x[7]));
+				m.setTelefono(String.valueOf(x[9]));
 				System.out.println(m.getId());
+				
 				
 				medicos.add(m);
 				
