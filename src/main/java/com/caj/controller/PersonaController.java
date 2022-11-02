@@ -106,6 +106,17 @@ public class PersonaController {
 		return new ResponseEntity<List<Persona>>(personas, HttpStatus.OK);
 	}
 	
+	@PostMapping(value = "/buscar2", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+	public ResponseEntity<List<Object[]>> buscar2(@RequestBody FiltroConsultaPersona filtroDTO){
+		List<Object[]> personas = new ArrayList<>();
+		
+		personas = service.search(filtroDTO);
+		System.out.println("inicio buscar persona2");
+		System.out.println(personas);
+		System.out.println("fin buscar persona2");
+		return new ResponseEntity<List<Object[]>>(personas, HttpStatus.OK);
+	}
+	
 	
 	
 

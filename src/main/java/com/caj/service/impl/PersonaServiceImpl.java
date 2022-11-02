@@ -156,6 +156,8 @@ public class PersonaServiceImpl implements IPersonaService {
 		// TODO Auto-generated method stub
 		return dao.buscar(filtroConsultaPersonaDTO.getDni(), filtroConsultaPersonaDTO.getNombreCompleto());
 	}
+	
+	
 
 	@Override
 	public Usuario usuarioPorPersonaId(Integer idPersona) {
@@ -173,6 +175,14 @@ public class PersonaServiceImpl implements IPersonaService {
 		nuevosRoles = actualizarRolesDTO.getRoles();
 		usuarios.setRoles(nuevosRoles);
 		return usuarios;
+	}
+
+	
+
+	@Override
+	public List<Object[]> search(FiltroConsultaPersona filtroConsultaPersonaDTO) {
+		// TODO Auto-generated method stub
+		return dao.buscar2(filtroConsultaPersonaDTO.getDni(), filtroConsultaPersonaDTO.getNombreCompleto());
 	}
 	
 	 

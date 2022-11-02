@@ -16,8 +16,11 @@ public interface IPersonaDAO extends JpaRepository<Persona, Integer> {
 	List<Object[]> obtenerIdRol(@Param("id_rol") Integer id);
 	
 	
-	@Query("from Persona p where p.dni =:dni or UPPER(p.nombre) like %:nombreCompleto% or UPPER(p.apelPat) like %:nombreCompleto% or UPPER(p.apelMat) like %:nombreCompleto%")
+	@Query("from Persona p where p.dni =:dni or LOWER(p.nombre) like %:nombreCompleto% or LOWER(p.apelPat) like %:nombreCompleto% or LOWER(p.apelMat) like %:nombreCompleto%")
 	List<Persona> buscar(@Param("dni")String dni, @Param("nombreCompleto")String nombreCompleto);
+	
+	@Query(value = "select * from persona where apel_mat like '%apelmmed1%'", nativeQuery = true)
+	List<Object[]> buscar2(@Param("dni")String dni, @Param("nombreCompleto")String nombreCompleto);
 	
 	@Query("from Usuario u inner join Persona p on p.id = u.idUser where p.id =:idPersona" )
 	Usuario usuarioPorPersonaId(@Param("idPersona")Integer idPersona);
