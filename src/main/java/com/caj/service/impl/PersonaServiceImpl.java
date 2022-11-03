@@ -190,6 +190,12 @@ public class PersonaServiceImpl implements IPersonaService {
 		// TODO Auto-generated method stub
 		return dao.findAll(pageable);
 	}
+
+	@Override
+	public Page<Persona> listarMedicos(Pageable pageable) {
+		// TODO Auto-generated method stub
+		return null;
+	}
 	
 	 
 	
