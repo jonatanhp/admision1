@@ -9,6 +9,7 @@ import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;
 import org.springframework.hateoas.EntityModel;
 import org.springframework.hateoas.Link;
@@ -26,12 +27,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
+import com.caj.dao.IPersonaDAO;
 import com.caj.dto.ActualizarRolesDTO;
 import com.caj.dto.FiltroConsultaPersona;
 import com.caj.dto.RegistrarPersonaGeneral;
 import com.caj.dto.RegistrarPersonaParticular;
 import com.caj.exception.ModelNotFoundException;
-
+import com.caj.model.Medico;
 import com.caj.model.Persona;
 import com.caj.model.Usuario;
 import com.caj.service.IPersonaService;
@@ -43,6 +45,9 @@ public class PersonaController {
 	
 	@Autowired
 	private IPersonaService service;
+	
+	@Autowired
+	private IPersonaDAO dao;
 	
 	@Autowired
 	private IUsuarioService uservice;
@@ -64,6 +69,37 @@ public class PersonaController {
 		patients = service.listPageable(pageable);
 		
 		return new ResponseEntity<Page<Persona>>(patients, HttpStatus.OK);
+		
+	}
+	
+	@GetMapping(value = "/medicos/pageable", produces = MediaType.APPLICATION_JSON_VALUE)
+	public ResponseEntity<Page<Persona>> listMedicoPageable(Pageable pageable){
+		
+		Page<Medico> medicos;
+		Page<Persona> medicos2;
+		List<Persona> personas;
+		
+		
+		
+		//Iterator<Integer> ids = list.iterator();
+		
+		medicos = service.listarMedicos(pageable);
+		List<Integer> list = new ArrayList<>();
+
+		
+		
+		for(Medico m : medicos) {
+			
+			list.add(m.getId());
+			
+			
+			
+		}
+		
+		personas = dao.findAllById(list);
+		medicos2 = new PageImpl<>(personas);
+		
+		return new ResponseEntity<Page<Persona>>(medicos2, HttpStatus.OK);
 		
 	}
 	

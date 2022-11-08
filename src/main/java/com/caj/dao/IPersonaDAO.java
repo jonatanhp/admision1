@@ -21,7 +21,7 @@ public interface IPersonaDAO extends JpaRepository<Persona, Integer> {
 	
 	
 	@Query("from Persona p where p.id =:idUser")
-	List<Persona> listarMedicosPorId(@Param("idUser")Integer idUser);
+	Persona listarMedicosPorId(@Param("idUser")Integer idUser);
 	
 	
 	

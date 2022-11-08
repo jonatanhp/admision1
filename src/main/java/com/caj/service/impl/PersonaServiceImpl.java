@@ -6,6 +6,7 @@ import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Service;
@@ -192,9 +193,11 @@ public class PersonaServiceImpl implements IPersonaService {
 	}
 
 	@Override
-	public Page<Persona> listarMedicos(Pageable pageable) {
+	public Page<Medico> listarMedicos(Pageable pageable) {
 		// TODO Auto-generated method stub
-		return null;
+		
+		
+		return docDao.findAll(pageable);
 	}
 	
 	 

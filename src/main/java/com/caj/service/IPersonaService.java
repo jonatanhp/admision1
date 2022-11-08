@@ -10,7 +10,7 @@ import com.caj.dto.ActualizarRolesDTO;
 import com.caj.dto.FiltroConsultaPersona;
 import com.caj.dto.RegistrarPersonaGeneral;
 import com.caj.dto.RegistrarPersonaParticular;
-
+import com.caj.model.Medico;
 import com.caj.model.Persona;
 import com.caj.model.Usuario;
 
@@ -24,7 +24,7 @@ public interface IPersonaService extends ICRUD<Persona> {
 	
 	List<Persona> buscar(FiltroConsultaPersona filtroConsultaPersonaDTO);
 	
-	Page<Persona> listarMedicos(Pageable pageable);
+	Page<Medico> listarMedicos(Pageable pageable);
 	
 	List<Object[]> search(FiltroConsultaPersona filtroConsultaPersonaDTO);
 	
