@@ -88,6 +88,8 @@ public class Persona {
 	public void setMedico(Medico medico) {
 		this.medico = medico;
 	}
+	
+	//comentario de prueba de deplot en railway
 
 	@ApiModelProperty(notes = "campo direccion, campo obligatorio")
 	@Column(name = "direccion", nullable = false, length = 200)
