@@ -2,6 +2,7 @@ package com.caj.model;
 
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -10,6 +11,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.MapsId;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
@@ -40,6 +42,11 @@ public class Medico {
 	@ManyToMany(fetch = FetchType.LAZY)
 	@JoinTable(name = "medico_especialidad", joinColumns = @JoinColumn(name = "id_medico", referencedColumnName = "id_persona"), inverseJoinColumns = @JoinColumn(name = "id_especialidad", referencedColumnName = "idEspecialidad"))
 	private List<Especialidad> especialidades;
+	
+	
+	@OneToMany(mappedBy = "medico", cascade = { CascadeType.PERSIST, CascadeType.MERGE,
+			CascadeType.REMOVE }, fetch = FetchType.LAZY, orphanRemoval = true)
+	private List<Turno> turnos;
 
 
 	public List<Especialidad> getEspecialidades() {

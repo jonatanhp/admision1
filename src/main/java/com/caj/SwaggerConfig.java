@@ -20,6 +20,7 @@ import springfox.documentation.spi.DocumentationType;
 import springfox.documentation.spring.web.plugins.Docket;
 import springfox.documentation.swagger2.annotations.EnableSwagger2;
 
+
 @Configuration
 @EnableSwagger2
 public class SwaggerConfig {
@@ -28,7 +29,7 @@ public class SwaggerConfig {
 	public Docket apiDocket() {
 		return new Docket(DocumentationType.SWAGGER_2)
 				.select()
-				.apis(RequestHandlerSelectors.basePackage("com.upeu"))
+				.apis(RequestHandlerSelectors.basePackage("com.caj"))
 				.paths(PathSelectors.any())
 				.build()
 				.apiInfo(getApiInfo())
@@ -40,8 +41,8 @@ public class SwaggerConfig {
 				"Order Service API",
 				"Order Service API Description",
 				"1.0",
-				"http://github.com/jonatanhp",
-				new Contact("Jonatan", "https://github.com/jonatanhp", "jonatan.hp@upeu.edu.pe"),
+				"http://codmind.com/terms",
+				new Contact("Codmind", "https://codmind.com", "apis@codmind.com"),
 				"LICENSE",
 				"LICENSE URL",
 				Collections.emptyList()
@@ -57,5 +58,7 @@ public class SwaggerConfig {
 	    plugins.add(new CollectionJsonLinkDiscoverer());
 	    return new LinkDiscoverers(SimplePluginRegistry.create(plugins));
 	}
+	
+	
 
 }
