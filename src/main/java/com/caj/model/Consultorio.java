@@ -22,6 +22,12 @@ public class Consultorio {
 	@ApiModelProperty(notes = "nombre consultorio")
 	@Column(name = "nombre_consultorio", nullable = false, length = 100)
 	private String nombreConsultorio;
+	
+	@Column(name = "num_consultorio", nullable = true, length = 3)
+	private String numConsultorio;
+	
+	@Column(name = "estado", nullable = true, length = 1)
+	private String estado;
 
 	public Integer getIdConsultorio() {
 		return idConsultorio;

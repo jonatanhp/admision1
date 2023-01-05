@@ -43,6 +43,12 @@ public class Medico {
 	@JoinTable(name = "medico_especialidad", joinColumns = @JoinColumn(name = "id_medico", referencedColumnName = "id_persona"), inverseJoinColumns = @JoinColumn(name = "id_especialidad", referencedColumnName = "idEspecialidad"))
 	private List<Especialidad> especialidades;
 	
+	@ManyToMany(fetch = FetchType.LAZY)
+	@JoinTable(name = "medico_consultorio", joinColumns = @JoinColumn(name = "id_medico", referencedColumnName = "id_persona"), inverseJoinColumns = @JoinColumn(name = "id_consultorio", referencedColumnName = "idConsultorio"))
+	private List<Consultorio> consultorios;
+	
+	
+	
 	
 	@OneToMany(mappedBy = "medico", cascade = { CascadeType.PERSIST, CascadeType.MERGE,
 			CascadeType.REMOVE }, fetch = FetchType.LAZY, orphanRemoval = true)

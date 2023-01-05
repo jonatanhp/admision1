@@ -58,7 +58,8 @@ public class PersonaController {
 	public ResponseEntity<List<Persona>> listar(){
 		List<Persona> personas = new ArrayList<>();
 		personas = service.listar();
-		return new ResponseEntity<List<Persona>>(personas, HttpStatus.OK);
+		ResponseEntity<List<Persona>> dv = new ResponseEntity<>(personas, HttpStatus.OK);
+		return dv;
 	}
 	
 	@GetMapping(value = "/pageable", produces = MediaType.APPLICATION_JSON_VALUE)
