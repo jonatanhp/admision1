@@ -20,5 +20,11 @@ public class ResponseExceptionHandler extends  ResponseEntityExceptionHandler	 {
 		ExceptionResponse exceptionResponse = new ExceptionResponse(new Date(), ex.getMessage(), web.getDescription(false));
 		return new ResponseEntity<Object>(exceptionResponse, HttpStatus.NOT_FOUND);
 	}
+	
+	@ExceptionHandler(PsqlException.class)
+	public final ResponseEntity<Object> psqlFkOnDeleteException(PsqlException ex, WebRequest web){
+		ExceptionResponse exceptionResponse = new ExceptionResponse(new Date(), ex.getMessage(), web.getDescription(false));
+		return new ResponseEntity<Object>(exceptionResponse, HttpStatus.CONFLICT);
+	}
 
 }

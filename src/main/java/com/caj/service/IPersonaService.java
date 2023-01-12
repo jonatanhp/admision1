@@ -23,6 +23,7 @@ public interface IPersonaService extends ICRUD<Persona> {
 	Persona registrarParticular(RegistrarPersonaParticular personaParticularDTO);
 	
 	List<Persona> buscar(FiltroConsultaPersona filtroConsultaPersonaDTO);
+	List<Persona> buscardni(FiltroConsultaPersona filtroConsultaPersonaDTO);
 	
 	Page<Medico> listarMedicos(Pageable pageable);
 	

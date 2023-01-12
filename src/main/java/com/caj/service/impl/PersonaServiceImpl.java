@@ -158,6 +158,13 @@ public class PersonaServiceImpl implements IPersonaService {
 		return dao.buscar(filtroConsultaPersonaDTO.getDni(), filtroConsultaPersonaDTO.getNombreCompleto());
 	}
 	
+	@Override
+	public List<Persona> buscardni(FiltroConsultaPersona filtroConsultaPersonaDTO) {
+		// TODO Auto-generated method stub
+		System.out.println("dni numero : " + filtroConsultaPersonaDTO.getDni());
+		return dao.buscarPorDni(filtroConsultaPersonaDTO.getDni());
+	}
+	
 	
 
 	@Override
@@ -199,6 +206,8 @@ public class PersonaServiceImpl implements IPersonaService {
 		
 		return docDao.findAll(pageable);
 	}
+
+	
 	
 	 
 	

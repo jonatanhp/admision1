@@ -152,6 +152,7 @@ public class PersonaController {
 		
 		personas = service.buscar(filtroDTO);
 		System.out.println("inicio buscar persona");
+		System.out.println(filtroDTO.getDni());
 		System.out.println(personas);
 		System.out.println("fin buscar persona");
 		return new ResponseEntity<List<Persona>>(personas, HttpStatus.OK);
