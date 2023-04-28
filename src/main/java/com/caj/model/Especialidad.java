@@ -64,6 +64,14 @@ public class Especialidad {
 	public void setName(String name) {
 		this.name = name;
 	}
+
+	public LocalDateTime getFechaCreacion() {
+		return fechaCreacion;
+	}
+
+	public void setFechaCreacion(LocalDateTime fechaCreacion) {
+		this.fechaCreacion = fechaCreacion;
+	}
 	
 	
 	
