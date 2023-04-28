@@ -76,6 +76,8 @@ public class PersonaController {
 	@GetMapping(value = "/medicos/pageable", produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<Page<Persona>> listMedicoPageable(Pageable pageable){
 		
+		System.out.println("1");
+		
 		Page<Medico> medicos;
 		Page<Persona> medicos2;
 		List<Persona> personas;

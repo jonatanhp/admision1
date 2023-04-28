@@ -41,19 +41,29 @@ public class Turno {
 	@JsonSerialize(using = ToStringSerializer.class)
 	@Column(name = "fecha_fin", nullable = true)
 	private LocalDateTime fechaFin;
+	
+	//@JsonIgnore
+	@ManyToOne
+	@JoinColumn(name = "id_medico_horario", nullable = false)
+	private MedicoHorario medicoHorario;
 
 	
-	@ManyToOne
-	@JoinColumn(name = "id_consultorio", nullable = false)
-	private Consultorio consultorio;
 	
-	
-	
-	
-	
-	@ManyToOne
-	@JoinColumn(name = "id_medico", nullable = false)
-	private Medico medico;
+
+
+
+
+	public MedicoHorario getMedicoHorario() {
+		return medicoHorario;
+	}
+
+
+
+
+
+	public void setMedicoHorario(MedicoHorario medicoHorario) {
+		this.medicoHorario = medicoHorario;
+	}
 
 
 
@@ -123,33 +133,7 @@ public class Turno {
 
 
 
-	public Consultorio getConsultorio() {
-		return consultorio;
-	}
-
-
-
-
-
-	public void setConsultorio(Consultorio consultorio) {
-		this.consultorio = consultorio;
-	}
-
-
-
-
-
-	public Medico getMedico() {
-		return medico;
-	}
-
-
-
-
-
-	public void setMedico(Medico medico) {
-		this.medico = medico;
-	}
+	
 	
 	
 	

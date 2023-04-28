@@ -202,7 +202,7 @@ public class PersonaServiceImpl implements IPersonaService {
 	@Override
 	public Page<Medico> listarMedicos(Pageable pageable) {
 		// TODO Auto-generated method stub
-		
+		System.out.println("1");
 		
 		return docDao.findAll(pageable);
 	}

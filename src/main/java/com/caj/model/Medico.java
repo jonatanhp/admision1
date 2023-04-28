@@ -50,9 +50,17 @@ public class Medico {
 	
 	
 	
-	@OneToMany(mappedBy = "medico", cascade = { CascadeType.PERSIST, CascadeType.MERGE,
-			CascadeType.REMOVE }, fetch = FetchType.LAZY, orphanRemoval = true)
-	private List<Turno> turnos;
+	
+
+
+	public List<Consultorio> getConsultorios() {
+		return consultorios;
+	}
+
+
+	public void setConsultorios(List<Consultorio> consultorios) {
+		this.consultorios = consultorios;
+	}
 
 
 	public List<Especialidad> getEspecialidades() {
