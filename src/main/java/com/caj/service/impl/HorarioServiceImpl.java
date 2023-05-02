@@ -109,6 +109,7 @@ public class HorarioServiceImpl implements IHorarioService {
 		    start1 = start1.plusMinutes(15);
 		    t.setFechaFin(start1);
 		    t.setMedicoHorario(medicoHorario);
+		    
 		    turnos.add(t);
 		    System.out.println(" variable start1 : " + start1);
 		    

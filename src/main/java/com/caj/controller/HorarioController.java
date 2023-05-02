@@ -43,6 +43,9 @@ public class HorarioController {
 	public ResponseEntity<List<Horario>> list(){
 		List<Horario> horarios = new ArrayList<>();
 		horarios = service.listar();
+		for(Horario h : horarios) {
+			System.out.println("horaa : "  + h.getFechaInicio());
+		}
 		return new ResponseEntity<List<Horario>>(horarios, HttpStatus.OK);
 	}
 	
