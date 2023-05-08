@@ -1,12 +1,16 @@
 package com.caj.model;
 
+import java.util.List;
 import java.util.Objects;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.MapsId;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
@@ -34,6 +38,21 @@ public class Paciente {
 	@MapsId
 	@JoinColumn(name = "id_persona")
 	private Persona persona;
+	
+	
+	@OneToMany(mappedBy = "paciente", cascade = { CascadeType.PERSIST, CascadeType.MERGE,
+			CascadeType.REMOVE }, fetch = FetchType.LAZY, orphanRemoval = true)
+	private List<Cita> citas;
+
+
+	public List<Cita> getCitas() {
+		return citas;
+	}
+
+
+	public void setCitas(List<Cita> citas) {
+		this.citas = citas;
+	}
 
 
 	public Integer getId() {
