@@ -15,6 +15,7 @@ import javax.persistence.Table;
 
 import org.hibernate.annotations.Cascade;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
@@ -73,13 +74,7 @@ public class Persona {
 		this.ubigeo = ubigeo;
 	}
 
-	public Paciente getPaciente() {
-		return paciente;
-	}
-
-	public void setPaciente(Paciente paciente) {
-		this.paciente = paciente;
-	}
+	
 
 	public Medico getMedico() {
 		return medico;
@@ -115,7 +110,7 @@ public class Persona {
 	@ApiModelProperty(notes = "el usuario del que hereda esta entidad persona")
 	@OneToOne
 	@MapsId
-	@JsonIgnore
+	
 	@JoinColumn(name = "id_user")
 	private Usuario usuario;
 	
@@ -191,6 +186,7 @@ public class Persona {
 		this.fecha_registro = fecha_registro;
 	}
 
+	@JsonManagedReference
 	public Usuario getUsuario() {
 		return usuario;
 	}
@@ -200,21 +196,15 @@ public class Persona {
 	}
 
 	@JsonManagedReference
-	public Paciente getEstudiante() {
+	public Paciente getPaciente() {
 		return paciente;
 	}
 
-	public void setEstudiante(Paciente paciente) {
+	public void setPaciente(Paciente paciente) {
 		this.paciente = paciente;
 	}
 
-    public Medico getDocente() {
-		return medico;
-	}
-
-	public void setDocente(Medico medico) {
-		this.medico = medico;
-	}
+    
 
 	@OneToOne(mappedBy = "persona", cascade = CascadeType.ALL)
 	@PrimaryKeyJoinColumn

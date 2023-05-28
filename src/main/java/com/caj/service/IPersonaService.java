@@ -25,7 +25,7 @@ public interface IPersonaService extends ICRUD<Persona> {
 	List<Persona> buscar(FiltroConsultaPersona filtroConsultaPersonaDTO);
 	List<Persona> buscardni(FiltroConsultaPersona filtroConsultaPersonaDTO);
 	
-	Page<Medico> listarMedicos(Pageable pageable);
+	Page<List<Persona>> listarMedicos(Pageable pageable);
 	
 	List<Object[]> search(FiltroConsultaPersona filtroConsultaPersonaDTO);
 	

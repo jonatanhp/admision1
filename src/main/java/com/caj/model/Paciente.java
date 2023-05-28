@@ -16,6 +16,7 @@ import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
@@ -41,10 +42,10 @@ public class Paciente {
 	
 	
 	@OneToMany(mappedBy = "paciente", cascade = { CascadeType.PERSIST, CascadeType.MERGE,
-			CascadeType.REMOVE }, fetch = FetchType.LAZY, orphanRemoval = true)
+			CascadeType.REMOVE }, fetch = FetchType.LAZY, orphanRemoval = false)
 	private List<Cita> citas;
 
-
+	@JsonManagedReference
 	public List<Cita> getCitas() {
 		return citas;
 	}

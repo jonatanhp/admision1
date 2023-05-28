@@ -18,6 +18,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -33,9 +34,12 @@ import com.caj.dto.FiltroConsultaPersona;
 import com.caj.dto.RegistrarPersonaGeneral;
 import com.caj.dto.RegistrarPersonaParticular;
 import com.caj.exception.ModelNotFoundException;
+import com.caj.model.Especialidad;
 import com.caj.model.Medico;
 import com.caj.model.Persona;
+import com.caj.model.Persona;
 import com.caj.model.Usuario;
+import com.caj.service.IPacienteService;
 import com.caj.service.IPersonaService;
 import com.caj.service.IUsuarioService;
 
@@ -51,6 +55,9 @@ public class PersonaController {
 	
 	@Autowired
 	private IUsuarioService uservice;
+	
+	@Autowired
+	private IPacienteService pacienteService;
 	
 	//@@PreAuthorize("@restAuthService.hasAccess('listar')")
 	//@PreAuthorize("hasAuthority('COORDINADOR') or hasAuthority('ADMIN')")
@@ -74,35 +81,14 @@ public class PersonaController {
 	}
 	
 	@GetMapping(value = "/medicos/pageable", produces = MediaType.APPLICATION_JSON_VALUE)
-	public ResponseEntity<Page<Persona>> listMedicoPageable(Pageable pageable){
-		
-		System.out.println("1");
-		
-		Page<Medico> medicos;
-		Page<Persona> medicos2;
-		List<Persona> personas;
+	public ResponseEntity<Page<List<Persona>>> listMedicoPageable(Pageable pageable){
 		
 		
+		Page<List<Persona>> personas;
 		
-		//Iterator<Integer> ids = list.iterator();
+		personas = service.listarMedicos(pageable);
 		
-		medicos = service.listarMedicos(pageable);
-		List<Integer> list = new ArrayList<>();
-
-		
-		
-		for(Medico m : medicos) {
-			
-			list.add(m.getId());
-			
-			
-			
-		}
-		
-		personas = dao.findAllById(list);
-		medicos2 = new PageImpl<>(personas);
-		
-		return new ResponseEntity<Page<Persona>>(medicos2, HttpStatus.OK);
+		return new ResponseEntity<Page<List<Persona>>>(personas, HttpStatus.OK);
 		
 	}
 	
@@ -169,6 +155,40 @@ public class PersonaController {
 		System.out.println(personas);
 		System.out.println("fin buscar persona2");
 		return new ResponseEntity<List<Object[]>>(personas, HttpStatus.OK);
+	}
+	
+	@PutMapping(consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+	public ResponseEntity<Object> modify (@Valid @RequestBody RegistrarPersonaGeneral persona){
+		
+		//Patient patient = new Patient();
+		//patient = service.register(pat);
+		System.out.println("id usuario modificar : " + persona.getUsuario().getIdUser());
+		System.out.println("id persona modificar : " + persona.getPersona().getId());
+		System.out.println("id paciente modificar : " + persona.getPaciente().getId());
+		
+		
+		
+		
+		service.modificar(persona.getPersona());
+		pacienteService.modificar(persona.getPaciente());
+		uservice.modificar(persona.getUsuario());
+		
+		//URI location = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(patient.getIdPatient()).toUri();
+		//return new ResponseEntity<Object>(HttpStatus.OK);
+		return new ResponseEntity<Object>(HttpStatus.OK);
+	}
+	
+	@DeleteMapping(value = "/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
+	public void delete(@PathVariable Integer id) {
+		Optional<Persona> nivel = service.listarPorId(id);
+		if(!nivel.isPresent()) {
+			throw new ModelNotFoundException("Id : " + id + "no encontraod");
+		}else {
+			System.out.println("inicio eliminar persona");
+			service.eliminar(id);
+			pacienteService.eliminar(id);
+			uservice.eliminar(id);
+		}
 	}
 	
 	

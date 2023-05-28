@@ -47,6 +47,7 @@ public class PersonaServiceImpl implements IPersonaService {
 	@Override
 	public Persona modificar(Persona t) {
 		// TODO Auto-generated method stub
+	
 		return dao.save(t);
 	}
 
@@ -65,6 +66,7 @@ public class PersonaServiceImpl implements IPersonaService {
 	@Override
 	public void eliminar(Integer id) {
 		// TODO Auto-generated method stub
+		
 		dao.deleteById(id);
 	}
 
@@ -200,11 +202,11 @@ public class PersonaServiceImpl implements IPersonaService {
 	}
 
 	@Override
-	public Page<Medico> listarMedicos(Pageable pageable) {
+	public Page<List<Persona>>listarMedicos(Pageable pageable) {
 		// TODO Auto-generated method stub
 		System.out.println("1");
 		
-		return docDao.findAll(pageable);
+		return dao.listarMedicos(pageable);
 	}
 
 	

@@ -9,6 +9,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 
@@ -18,9 +20,8 @@ import io.swagger.annotations.ApiModelProperty;
 public class Cita {
 	
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@GeneratedValue(strategy = GenerationType.SEQUENCE)
 	private Integer idCita;
-	
 	
 	@ManyToOne
 	@JoinColumn(name = "id_persona", nullable = false)
@@ -45,7 +46,8 @@ public class Cita {
 	public void setIdCita(Integer idCita) {
 		this.idCita = idCita;
 	}
-
+	
+	@JsonBackReference
 	public Paciente getPaciente() {
 		return paciente;
 	}

@@ -15,6 +15,8 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 import io.swagger.annotations.ApiModelProperty;
 
 @Entity
@@ -41,7 +43,8 @@ public class MedicoHorario {
 	@OneToMany(mappedBy = "medicoHorario", cascade = { CascadeType.PERSIST, CascadeType.MERGE,
 			CascadeType.REMOVE }, fetch = FetchType.LAZY, orphanRemoval = true)
 	private List<Turno> turnos;
-
+	
+	@JsonManagedReference
 	public List<Turno> getTurnos() {
 		return turnos;
 	}

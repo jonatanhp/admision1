@@ -31,7 +31,7 @@ import com.caj.model.Paciente;
 import com.caj.service.IPacienteService;
 
 @RestController
-@RequestMapping("/estudiantes")
+@RequestMapping("/pacientes")
 public class PacienteController {
 	
 	@Autowired
@@ -39,23 +39,23 @@ public class PacienteController {
 	
 	@GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<List<Paciente>> listar(){
-		List<Paciente> estudiantes = new ArrayList<>();
-		estudiantes = service.listar();
-		return new ResponseEntity<List<Paciente>>(estudiantes, HttpStatus.OK);
+		List<Paciente> pacientes = new ArrayList<>();
+		pacientes = service.listar();
+		return new ResponseEntity<List<Paciente>>(pacientes, HttpStatus.OK);
 	}
 	
 	
 	@GetMapping(value = "/{id}")
 	public EntityModel<Optional<Paciente>> listarPorId(@PathVariable("id") Integer id){
-		Optional<Paciente> estudiante = service.listarPorId(id);
-		if(!estudiante.isPresent()) {
-			throw new ModelNotFoundException("no existe estudiante con id :  " + id);
+		Optional<Paciente> paciente = service.listarPorId(id);
+		if(!paciente.isPresent()) {
+			throw new ModelNotFoundException("no existe paciente con id :  " + id);
 		}
-		EntityModel<Optional<Paciente>> entityModel = EntityModel.of(estudiante);
+		EntityModel<Optional<Paciente>> entityModel = EntityModel.of(paciente);
 		
-		Link link = WebMvcLinkBuilder.linkTo(PacienteController.class).slash(estudiante.get().getId()).withSelfRel();
+		Link link = WebMvcLinkBuilder.linkTo(PacienteController.class).slash(paciente.get().getId()).withSelfRel();
 		
-		entityModel.add(link.withRel("estudiante recuperado"));
+		entityModel.add(link.withRel("paciente recuperado"));
 		
 		return entityModel;
 		
@@ -68,10 +68,10 @@ public class PacienteController {
 	}
 	
 	@PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
-	public ResponseEntity<Object> registrar(@Valid @RequestBody Paciente estudiante){
+	public ResponseEntity<Object> registrar(@Valid @RequestBody Paciente paciente){
 		Paciente Iestudiante = new Paciente();
 		
-		Iestudiante = service.registrar(estudiante);
+		Iestudiante = service.registrar(paciente);
 		
 		URI location = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(Iestudiante.getId()).toUri();
 		
@@ -79,15 +79,15 @@ public class PacienteController {
 	}
 	
 	@PutMapping(consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
-	public ResponseEntity<Object> modificar(@Valid @RequestBody Paciente estudiante){
-		service.modificar(estudiante);
+	public ResponseEntity<Object> modificar(@Valid @RequestBody Paciente paciente){
+		service.modificar(paciente);
 		return new ResponseEntity<Object>(HttpStatus.OK);
 	}
 	
 	public void eliminar(@PathVariable Integer id) {
-		Optional<Paciente> estudiante = service.listarPorId(id);
-		if(!estudiante.isPresent()){
-			throw new ModelNotFoundException("no existe estudiante con id :  " + id);
+		Optional<Paciente> paciente = service.listarPorId(id);
+		if(!paciente.isPresent()){
+			throw new ModelNotFoundException("no existe paciente con id :  " + id);
 		}else {
 			service.eliminar(id);
 		}

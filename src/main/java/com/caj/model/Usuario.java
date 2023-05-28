@@ -16,6 +16,9 @@ import javax.persistence.OneToOne;
 import javax.persistence.PrimaryKeyJoinColumn;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 import io.swagger.annotations.ApiModel;
 
 
@@ -37,11 +40,11 @@ public class Usuario {
 	@Column(name = "estado", nullable = false, length = 10)
 	private String estado;
 	
-	@OneToOne(mappedBy = "usuario", cascade = CascadeType.ALL, fetch = FetchType.EAGER, orphanRemoval = true)
+	@OneToOne(mappedBy = "usuario", cascade = CascadeType.ALL, fetch = FetchType.EAGER, orphanRemoval = false)
 	@PrimaryKeyJoinColumn
 	private Persona persona;
 	
-
+	@JsonBackReference
 	public Persona getPersona() {
 		return persona;
 	}

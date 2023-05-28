@@ -2,6 +2,8 @@ package com.caj.dao;
 
 import java.util.List;
 
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
@@ -25,6 +27,9 @@ public interface IPersonaDAO extends JpaRepository<Persona, Integer> {
 	
 	@Query("from Persona p where p.id =:idUser")
 	Persona listarMedicosPorId(@Param("idUser")Integer idUser);
+	
+	@Query("from Persona p inner join Medico m on p.id = m.id")
+	Page<List<Persona>> listarMedicos(Pageable pageable);
 	
 	
 	

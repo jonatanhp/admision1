@@ -57,7 +57,7 @@ public class UserServiceImpl implements UserDetailsService, IUsuarioService {
 	@Override
 	public Usuario registrar(Usuario t) {
 		// TODO Auto-generated method stub
-		return null;
+		return userDAO.save(t);
 	}
 
 	@Override
@@ -81,6 +81,7 @@ public class UserServiceImpl implements UserDetailsService, IUsuarioService {
 	@Override
 	public void eliminar(Integer id) {
 		// TODO Auto-generated method stub
+		userDAO.deleteById(id);
 		
 	}
 
