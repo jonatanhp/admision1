@@ -39,6 +39,7 @@ import com.caj.model.Medico;
 import com.caj.model.Persona;
 import com.caj.model.Persona;
 import com.caj.model.Usuario;
+import com.caj.service.IMedicoService;
 import com.caj.service.IPacienteService;
 import com.caj.service.IPersonaService;
 import com.caj.service.IUsuarioService;
@@ -58,6 +59,9 @@ public class PersonaController {
 	
 	@Autowired
 	private IPacienteService pacienteService;
+	
+	@Autowired
+	private IMedicoService medicoService;
 	
 	//@@PreAuthorize("@restAuthService.hasAccess('listar')")
 	//@PreAuthorize("hasAuthority('COORDINADOR') or hasAuthority('ADMIN')")
@@ -171,6 +175,27 @@ public class PersonaController {
 		
 		service.modificar(persona.getPersona());
 		pacienteService.modificar(persona.getPaciente());
+		uservice.modificar(persona.getUsuario());
+		
+		//URI location = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(patient.getIdPatient()).toUri();
+		//return new ResponseEntity<Object>(HttpStatus.OK);
+		return new ResponseEntity<Object>(HttpStatus.OK);
+	}
+	
+	@PutMapping(value = "/updMed", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+	public ResponseEntity<Object> modifyMedico (@Valid @RequestBody RegistrarPersonaParticular persona){
+		
+		//Patient patient = new Patient();
+		//patient = service.register(pat);
+		System.out.println("id usuario modificar : " + persona.getUsuario().getIdUser());
+		System.out.println("id persona modificar : " + persona.getPersona().getId());
+		System.out.println("id paciente modificar : " + persona.getMedico().getId());
+		
+		
+		
+		
+		service.modificar(persona.getPersona());
+		medicoService.modificar(persona.getMedico());
 		uservice.modificar(persona.getUsuario());
 		
 		//URI location = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(patient.getIdPatient()).toUri();
