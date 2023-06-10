@@ -35,7 +35,9 @@ import com.caj.dto.RegistrarPersonaGeneral;
 import com.caj.dto.RegistrarPersonaParticular;
 import com.caj.exception.ModelNotFoundException;
 import com.caj.model.Especialidad;
+import com.caj.model.Horario;
 import com.caj.model.Medico;
+import com.caj.model.MedicoHorario;
 import com.caj.model.Persona;
 import com.caj.model.Persona;
 import com.caj.model.Usuario;
@@ -202,6 +204,24 @@ public class PersonaController {
 		//return new ResponseEntity<Object>(HttpStatus.OK);
 		return new ResponseEntity<Object>(HttpStatus.OK);
 	}
+	
+	
+	
+	@GetMapping(value = "/{id}/horarios", produces = MediaType.APPLICATION_JSON_VALUE)
+	public ResponseEntity<List<MedicoHorario>> listHorariosFromMedico(@PathVariable("id") Integer id){
+		
+		List<MedicoHorario> horarios = new ArrayList<>();
+		
+		horarios = service.getHorariosFromMedico(id);
+		System.out.println(horarios);
+		
+		return new ResponseEntity<List<MedicoHorario>>(horarios, HttpStatus.OK);
+		
+		
+	}
+	
+	
+	
 	
 	@DeleteMapping(value = "/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
 	public void delete(@PathVariable Integer id) {

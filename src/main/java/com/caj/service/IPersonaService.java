@@ -10,7 +10,9 @@ import com.caj.dto.ActualizarRolesDTO;
 import com.caj.dto.FiltroConsultaPersona;
 import com.caj.dto.RegistrarPersonaGeneral;
 import com.caj.dto.RegistrarPersonaParticular;
+import com.caj.model.Horario;
 import com.caj.model.Medico;
+import com.caj.model.MedicoHorario;
 import com.caj.model.Persona;
 import com.caj.model.Usuario;
 
@@ -35,6 +37,8 @@ public interface IPersonaService extends ICRUD<Persona> {
 	Usuario actualizarRoles(ActualizarRolesDTO actualizarRolesDTO);
 	
 	Page<Persona> listPageable(Pageable pageable);
+	
+	List<MedicoHorario> getHorariosFromMedico(Integer idMedico);
 		
 	
 

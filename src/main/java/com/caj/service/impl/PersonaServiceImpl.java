@@ -19,7 +19,9 @@ import com.caj.dto.ActualizarRolesDTO;
 import com.caj.dto.FiltroConsultaPersona;
 import com.caj.dto.RegistrarPersonaGeneral;
 import com.caj.dto.RegistrarPersonaParticular;
+import com.caj.model.Horario;
 import com.caj.model.Medico;
+import com.caj.model.MedicoHorario;
 import com.caj.model.Paciente;
 import com.caj.model.Persona;
 import com.caj.model.Rol;
@@ -207,6 +209,12 @@ public class PersonaServiceImpl implements IPersonaService {
 		System.out.println("1");
 		
 		return dao.listarMedicos(pageable);
+	}
+
+	@Override
+	public List<MedicoHorario> getHorariosFromMedico(Integer idMedico) {
+		// TODO Auto-generated method stub
+		return dao.findHorarioByIdMedico(idMedico);
 	}
 
 	

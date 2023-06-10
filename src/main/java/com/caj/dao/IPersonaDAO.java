@@ -8,7 +8,8 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
-
+import com.caj.model.Horario;
+import com.caj.model.MedicoHorario;
 import com.caj.model.Persona;
 import com.caj.model.Usuario;
 
@@ -23,6 +24,9 @@ public interface IPersonaDAO extends JpaRepository<Persona, Integer> {
 	
 	@Query("from Persona p where p.dni = :dni")
 	List<Persona> buscarPorDni(@Param("dni")String dni);
+	
+	@Query("from MedicoHorario mh where mh.medico.id = :idMedico")
+	List<MedicoHorario> findHorarioByIdMedico(@Param("idMedico")Integer idMedico);
 	
 	
 	@Query("from Persona p where p.id =:idUser")
