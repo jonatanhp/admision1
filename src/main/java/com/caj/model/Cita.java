@@ -19,7 +19,7 @@ import io.swagger.annotations.ApiModelProperty;
 @Table(name = "cita")
 public class Cita {
 	//
-	
+	//
 	@Id
 	@GeneratedValue(strategy = GenerationType.SEQUENCE)
 	private Integer idCita;
