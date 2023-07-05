@@ -1,6 +1,7 @@
 package com.caj.model;
 
 import java.util.List;
+import java.util.Set;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -39,9 +40,9 @@ public class Medico {
 	@JoinColumn(name = "id_persona")
 	private Persona persona;
 	
-	@ManyToMany(fetch = FetchType.LAZY)
+	@ManyToMany(fetch = FetchType.EAGER)
 	@JoinTable(name = "medico_especialidad", joinColumns = @JoinColumn(name = "id_medico", referencedColumnName = "id_persona"), inverseJoinColumns = @JoinColumn(name = "id_especialidad", referencedColumnName = "idEspecialidad"))
-	private List<Especialidad> especialidades;
+	private Set<Especialidad> especialidades;
 	
 	@ManyToMany(fetch = FetchType.LAZY)
 	@JoinTable(name = "medico_consultorio", joinColumns = @JoinColumn(name = "id_medico", referencedColumnName = "id_persona"), inverseJoinColumns = @JoinColumn(name = "id_consultorio", referencedColumnName = "idConsultorio"))
@@ -63,12 +64,12 @@ public class Medico {
 	}
 
 
-	public List<Especialidad> getEspecialidades() {
+	public Set<Especialidad> getEspecialidades() {
 		return especialidades;
 	}
 
 
-	public void setEspecialidades(List<Especialidad> especialidades) {
+	public void setEspecialidades(Set<Especialidad> especialidades) {
 		this.especialidades = especialidades;
 	}
 

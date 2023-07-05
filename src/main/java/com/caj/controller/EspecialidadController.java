@@ -25,6 +25,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
+import com.caj.dao.IEspecialidadDAO;
 import com.caj.exception.ModelNotFoundException;
 
 import com.caj.model.Especialidad;
@@ -40,6 +41,8 @@ public class EspecialidadController {
 	@Autowired
 	private IEspecialidadService service;
 	
+	@Autowired
+	private IEspecialidadDAO dao;
 	
 	@GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<List<Especialidad>> list(){
@@ -94,17 +97,17 @@ public class EspecialidadController {
 	}
 	
 	@PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
-	public ResponseEntity<Object> register (@Valid @RequestBody Especialidad spec){
+	public Especialidad register (@Valid @RequestBody Especialidad spec){
 		
 		Especialidad specialty = new Especialidad();
 		specialty = service.registrar(spec);
 		URI location = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(specialty.getIdEspecialidad()).toUri();
-		return ResponseEntity.created(location).build();
+		return specialty;
 		
 	}
 	
 	@PutMapping(consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
-	public ResponseEntity<Object> modify (@Valid @RequestBody Especialidad specialty){
+	public ResponseEntity<Object> modify (Especialidad specialty){
 		
 		//Patient patient = new Patient();
 		//patient = service.register(pat);

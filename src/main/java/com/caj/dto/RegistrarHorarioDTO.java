@@ -1,5 +1,7 @@
 package com.caj.dto;
 
+import com.caj.model.Consultorio;
+import com.caj.model.Especialidad;
 import com.caj.model.Horario;
 import com.caj.model.Medico;
 import com.caj.model.MedicoHorario;
@@ -10,6 +12,28 @@ public class RegistrarHorarioDTO {
 	
 	private Horario horario;
 	
+	private Consultorio consultorio;
+	
+	private Especialidad especialidad;
+	
+	
+	
+	public Especialidad getEspecialidad() {
+		return especialidad;
+	}
+
+	public void setEspecialidad(Especialidad especialidad) {
+		this.especialidad = especialidad;
+	}
+
+	public Consultorio getConsultorio() {
+		return consultorio;
+	}
+
+	public void setConsultorio(Consultorio consultorio) {
+		this.consultorio = consultorio;
+	}
+
 	private MedicoHorario medicoHorario;
 
 	public Medico getMedico() {
