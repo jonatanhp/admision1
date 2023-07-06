@@ -8,4 +8,18 @@ node {
       bat "${mvn}/bin/mvn clean verify sonar:sonar -Dsonar.login=squ_231cbdc2c2fdde3d88d4ee21dfe228f6b60d099d -Dsonar.projectKey=Admision1 -Dsonar.projectName='Admision1'"
     }
   }
+  
+  stage('Integration tests') {
+            // Run the maven build
+            steps {
+                script {
+                    def mvn = tool 'm1';
+                     
+                        bat(/"${mvnHome}\bin\mvn" verify -Dunit-tests.skip=true/)
+                    
+
+                }
+              
+            }
+        }
 }
