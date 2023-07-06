@@ -15,7 +15,7 @@ node {
                 script {
                     def mvn = tool 'm1';
                      
-                        bat(/"${mvnHome}\bin\mvn" verify -Dunit-tests.skip=true/)
+                        bat(/"${mvn}\bin\mvn" verify -Dunit-tests.skip=true/)
                     
 
                 }
