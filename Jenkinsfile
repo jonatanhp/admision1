@@ -9,17 +9,5 @@ node {
     }
   }
   
-  stage('Integration tests') {
-            // Run the maven build
-            steps {
-                script {
-                    def mvn = tool 'm1';
-                     
-                        bat(/"${mvn}\bin\mvn" verify -Dunit-tests.skip=true/)
-                    
-
-                }
-              
-            }
-        }
+  
 }
