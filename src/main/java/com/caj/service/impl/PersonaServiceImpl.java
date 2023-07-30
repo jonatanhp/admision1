@@ -1,4 +1,4 @@
-package com.caj.service.impl;
+ package com.caj.service.impl;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -159,7 +159,7 @@ public class PersonaServiceImpl implements IPersonaService {
 	@Override
 	public List<Persona> buscar(FiltroConsultaPersona filtroConsultaPersonaDTO) {
 		// TODO Auto-generated method stub
-		return dao.buscar(filtroConsultaPersonaDTO.getDni(), filtroConsultaPersonaDTO.getNombreCompleto());
+		return dao.buscar( filtroConsultaPersonaDTO.getNombreCompleto());
 	}
 	
 	@Override

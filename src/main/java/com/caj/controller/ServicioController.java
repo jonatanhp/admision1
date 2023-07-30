@@ -45,12 +45,12 @@ public class ServicioController {
 	
 	@GetMapping(value = "/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
 	public EntityModel<Optional<Servicio>> listById(@PathVariable("id") Integer id){
-		Optional<Servicio> nivel = service.listarPorId(id);
-		if(!nivel.isPresent()) {
+		Optional<Servicio> servicio = service.listarPorId(id);
+		if(!servicio.isPresent()) {
 			throw new ModelNotFoundException("Id: " + id );
 		}
-		EntityModel<Optional<Servicio>> entityModel = EntityModel.of(nivel);
-		Servicio nivel2 = nivel.get();
+		EntityModel<Optional<Servicio>> entityModel = EntityModel.of(servicio);
+		Servicio nivel2 = servicio.get();
 		Link link = WebMvcLinkBuilder.linkTo(ServicioController.class).slash(nivel2.getIdServicio()).withSelfRel();
 		entityModel.add(link.withRel("asdf"));
 		return entityModel;
@@ -59,8 +59,8 @@ public class ServicioController {
 	
 	@PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<Object> register (@Valid @RequestBody Servicio n){
-		Servicio nivel = service.registrar(n);
-		URI location = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(nivel.getIdServicio()).toUri();
+		Servicio servicio = service.registrar(n);
+		URI location = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(servicio.getIdServicio()).toUri();
 		return ResponseEntity.created(location).build();
 		
 	}
@@ -73,8 +73,8 @@ public class ServicioController {
 	
 	@DeleteMapping(value = "/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
 	public void delete(@PathVariable Integer id) {
-		Optional<Servicio> nivel = service.listarPorId(id);
-		if(!nivel.isPresent()) {
+		Optional<Servicio> servicio = service.listarPorId(id);
+		if(!servicio.isPresent()) {
 			throw new ModelNotFoundException("Id : " + id + "no encontraod");
 		}else {
 			service.eliminar(id);

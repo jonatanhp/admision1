@@ -2,6 +2,7 @@ package com.caj.model;
 
 import java.util.List;
 import java.util.Objects;
+import java.util.Set;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -43,15 +44,19 @@ public class Paciente {
 	
 	@OneToMany(mappedBy = "paciente", cascade = { CascadeType.PERSIST, CascadeType.MERGE,
 			CascadeType.REMOVE }, fetch = FetchType.LAZY, orphanRemoval = false)
-	private List<Cita> citas;
+	private Set<Cita> citas;
+	
+	@OneToMany(mappedBy = "paciente", cascade = { CascadeType.PERSIST, CascadeType.MERGE,
+			CascadeType.REMOVE }, fetch = FetchType.LAZY, orphanRemoval = false)
+	private Set<Venta> ventas;
 
 	@JsonManagedReference
-	public List<Cita> getCitas() {
+	public Set<Cita> getCitas() {
 		return citas;
 	}
 
 
-	public void setCitas(List<Cita> citas) {
+	public void setCitas(Set<Cita> citas) {
 		this.citas = citas;
 	}
 
@@ -88,6 +93,16 @@ public class Paciente {
 	
 	
 	
+
+	@JsonBackReference
+	public Set<Venta> getVentas() {
+		return ventas;
+	}
+
+
+	public void setVentas(Set<Venta> ventas) {
+		this.ventas = ventas;
+	}
 
 
 	@Override

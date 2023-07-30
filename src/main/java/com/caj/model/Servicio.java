@@ -2,16 +2,21 @@ package com.caj.model;
 
 import java.sql.Date;
 import java.time.LocalDateTime;
+import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import com.fasterxml.jackson.databind.ser.std.ToStringSerializer;
 
@@ -75,6 +80,25 @@ public class Servicio {
 	@ManyToOne
 	@JoinColumn(name = "id_tipo_servicio", nullable = false)
 	private TipoServicio tipoServicio;
+	
+	
+	@OneToMany(mappedBy = "servicio", cascade = { CascadeType.PERSIST, CascadeType.MERGE,
+			CascadeType.REMOVE }, fetch = FetchType.LAZY, orphanRemoval = true)
+	private List<VentaDetalle> ventaDetalle;
+
+
+	
+	@JsonBackReference
+	public List<VentaDetalle> getVentaDetalle() {
+		return ventaDetalle;
+	}
+
+
+
+
+	public void setVentaDetalle(List<VentaDetalle> ventaDetalle) {
+		this.ventaDetalle = ventaDetalle;
+	}
 
 
 
