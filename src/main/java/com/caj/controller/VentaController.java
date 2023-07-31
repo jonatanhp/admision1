@@ -29,8 +29,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
+import com.caj.dto.FiltroConsultaPersona;
 import com.caj.dto.VentaDTO;
 import com.caj.exception.ModelNotFoundException;
+import com.caj.model.Persona;
 import com.caj.model.Venta;
 import com.caj.service.IVentaService;
 
@@ -85,6 +87,19 @@ public class VentaController {
 		venta = service.registrar_venta(ventaDTO);
 		URI location = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(venta.getIdVenta()).toUri();
 		return ResponseEntity.created(location).build();		
+	}
+	
+	@PostMapping(value = "/buscar", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+	public ResponseEntity<List<Venta>> buscar(@RequestBody Integer id){
+		List<Venta> personas = new ArrayList<>();
+		
+		personas = service.searchSaleByPatient(id);
+		System.out.println("inicio buscar persona");
+		
+		System.out.println(id);
+		System.out.println(personas);
+		System.out.println("fin buscar persona");
+		return new ResponseEntity<List<Venta>>(personas, HttpStatus.OK);
 	}
 	
 	

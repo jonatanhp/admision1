@@ -186,7 +186,7 @@ public class Persona {
 		this.fecha_registro = fecha_registro;
 	}
 
-	@JsonManagedReference
+	@JsonManagedReference(value = "usuario-persona")
 	public Usuario getUsuario() {
 		return usuario;
 	}
@@ -195,7 +195,7 @@ public class Persona {
 		this.usuario = usuario;
 	}
 
-	@JsonManagedReference
+	@JsonBackReference(value = "persona-paciente")
 	public Paciente getPaciente() {
 		return paciente;
 	}

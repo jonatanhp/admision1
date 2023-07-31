@@ -44,7 +44,7 @@ public class Usuario {
 	@PrimaryKeyJoinColumn
 	private Persona persona;
 	
-	@JsonBackReference
+	@JsonBackReference(value = "usuario-persona")
 	public Persona getPersona() {
 		return persona;
 	}

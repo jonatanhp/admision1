@@ -16,15 +16,24 @@ import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 
+
+
+
 @ApiModel(description = "entidad paciente, hereda de persona")
 @Entity
 @Table(name = "paciente")
+/*
+ * @JsonIdentityInfo( generator = ObjectIdGenerators.PropertyGenerator.class,
+ * property = "id")
+ */
 public class Paciente {
 	
 	@Id
@@ -50,7 +59,7 @@ public class Paciente {
 			CascadeType.REMOVE }, fetch = FetchType.LAZY, orphanRemoval = false)
 	private Set<Venta> ventas;
 
-	@JsonManagedReference
+	@JsonManagedReference(value = "paciente-citas")
 	public Set<Cita> getCitas() {
 		return citas;
 	}
@@ -80,7 +89,7 @@ public class Paciente {
 		this.codigo = codigo;
 	}
 
-	@JsonBackReference
+	@JsonManagedReference(value = "persona-paciente")
 	public Persona getPersona() {
 		return persona;
 	}
@@ -94,7 +103,8 @@ public class Paciente {
 	
 	
 
-	@JsonBackReference
+	//@JsonManagedReference(value = "paciente-ventas")
+	@JsonIgnore
 	public Set<Venta> getVentas() {
 		return ventas;
 	}

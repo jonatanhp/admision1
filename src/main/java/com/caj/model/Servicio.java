@@ -1,5 +1,6 @@
 package com.caj.model;
 
+import java.math.BigDecimal;
 import java.sql.Date;
 import java.time.LocalDateTime;
 import java.util.List;
@@ -15,6 +16,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.validation.constraints.Digits;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
@@ -40,8 +42,13 @@ public class Servicio {
 	@Column(name = "codigo_acp")
 	private String codigoAcp;
 	
+	/*
+	 * @Column(name = "precio_sin_igv") private double precioSinIgv;
+	 */
+	
+	@Digits(integer=9, fraction=6)
 	@Column(name = "precio_sin_igv")
-	private double precioSinIgv;
+	private BigDecimal precioSinIgv;
 	
 	@JsonSerialize(using = ToStringSerializer.class)
 	private LocalDateTime fechaInicio;
@@ -159,14 +166,14 @@ public class Servicio {
 
 
 
-	public double getPrecioSinIgv() {
+	public BigDecimal getPrecioSinIgv() {
 		return precioSinIgv;
 	}
 
 
 
 
-	public void setPrecioSinIgv(double precioSinIgv) {
+	public void setPrecioSinIgv(BigDecimal precioSinIgv) {
 		this.precioSinIgv = precioSinIgv;
 	}
 

@@ -57,6 +57,12 @@ public class VentaServiceImpl implements IVentaService {
 		// TODO Auto-generated method stub
 		dao.deleteById(id);
 	}
+
+	@Override
+	public List<Venta> searchSaleByPatient(Integer idPatient) {
+		// TODO Auto-generated method stub
+		return dao.searchSaleByPatient(idPatient);
+	}
 	
 	
 

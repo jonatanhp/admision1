@@ -10,6 +10,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
@@ -48,7 +49,7 @@ public class Cita {
 		this.idCita = idCita;
 	}
 	
-	@JsonBackReference
+	@JsonBackReference(value = "paciente-citas")
 	public Paciente getPaciente() {
 		return paciente;
 	}
