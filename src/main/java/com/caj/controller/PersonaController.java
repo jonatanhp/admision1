@@ -100,6 +100,7 @@ public class PersonaController {
 	
 	@GetMapping(value = "/{id}")
 	public EntityModel<Optional<Persona>> listarPorId(@PathVariable("id") Integer id){
+		System.out.println("inicio persona por id");
 		Optional<Persona> persona;
 		persona = service.listarPorId(id);
 		
