@@ -103,7 +103,7 @@ public class PersonaController {
 		System.out.println("inicio persona por id");
 		Optional<Persona> persona;
 		persona = service.listarPorId(id);
-		
+		//Sy
 		if(!persona.isPresent()) {
 			throw new ModelNotFoundException("no existe persona con id :  " +id);
 		}
