@@ -62,15 +62,16 @@ public class RegistroCanvasPruebaServiceImpl implements IRegistroCanvasPruebaSer
 		
 	}
 	
-	Connection conn = null;
-    ResultSet rset = null;
-    Statement stmt = null;
-    PreparedStatement pstmt = null;
-    String sql = "";
-    DBConn dbconn = new DBConn();
+	
 	
 	@Override
 	public void registrarCanvas2(RegistroCanvasDTO regis) {
+		Connection conn = null;
+	    ResultSet rset = null;
+	    Statement stmt = null;
+	    PreparedStatement pstmt = null;
+	    String sql = "";
+	    DBConn dbconn = new DBConn();
 		
 		// TODO Auto-generated method stub
 		System.out.println("llamado");
@@ -84,6 +85,8 @@ public class RegistroCanvasPruebaServiceImpl implements IRegistroCanvasPruebaSer
 	            stmt = conn.createStatement();
 	            if(stmt.executeUpdate(sql)==1){
 	            	System.out.println("actualizado");
+	            	stmt.close();
+	                conn.close();
 	                success=true;
 	            }
 	        } catch (Exception e) {
