@@ -58,6 +58,11 @@ public class Paciente {
 	@OneToMany(mappedBy = "paciente", cascade = { CascadeType.PERSIST, CascadeType.MERGE,
 			CascadeType.REMOVE }, fetch = FetchType.LAZY, orphanRemoval = false)
 	private Set<Venta> ventas;
+	
+	@OneToMany(mappedBy = "paciente", cascade = { CascadeType.PERSIST, CascadeType.MERGE,
+			CascadeType.REMOVE }, fetch = FetchType.LAZY, orphanRemoval = false)
+	private Set<Cuenta> cuentas;
+	
 
 	@JsonManagedReference(value = "paciente-citas")
 	public Set<Cita> getCitas() {
@@ -102,6 +107,17 @@ public class Paciente {
 	
 	
 	
+	
+
+	public Set<Cuenta> getCuentas() {
+		return cuentas;
+	}
+
+
+	public void setCuentas(Set<Cuenta> cuentas) {
+		this.cuentas = cuentas;
+	}
+
 
 	//@JsonManagedReference(value = "paciente-ventas")
 	@JsonIgnore

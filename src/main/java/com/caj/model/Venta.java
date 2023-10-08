@@ -64,8 +64,12 @@ public class Venta {
 	
 
 	@OneToMany(mappedBy = "venta", cascade = { CascadeType.PERSIST, CascadeType.MERGE,
-			CascadeType.REMOVE }, fetch = FetchType.EAGER, orphanRemoval = true)
+			CascadeType.REMOVE }, fetch = FetchType.LAZY, orphanRemoval = true)
 	private Set<VentaDetalle> detalle;
+	
+	@ManyToOne
+	@JoinColumn(name = "id_cuenta", nullable = false) 
+	private Cuenta cuenta;
 	
 	
 	@ManyToOne
@@ -78,7 +82,7 @@ public class Venta {
 		return idVenta;
 	}
 
-	
+	  
 
 	public void setIdVenta(Integer idVenta) {
 		this.idVenta = idVenta;
@@ -93,6 +97,19 @@ public class Venta {
 	public void setFechaVenta(LocalDate fechaVenta) {
 		this.fechaVenta = fechaVenta;
 	}
+	
+	
+
+	public Cuenta getCuenta() {
+		return cuenta;
+	}
+
+
+
+	public void setCuenta(Cuenta cuenta) {
+		this.cuenta = cuenta;
+	}
+
 
 
 	public BigDecimal getPrecioVenta() {

@@ -29,10 +29,10 @@ public class DBConn {
 				 */
                 
                 
-                String url = "jdbc:postgresql://localhost:5432/rail2";
+                String url = "jdbc:postgresql://localhost:5433/rail2";
                 Properties props = new Properties();
                 props.setProperty("user", "postgres");
-                props.setProperty("password", "Informatica123");
+                props.setProperty("password", "Cuaster1023.");
                 //props.setProperty("ssl", "true");
                 Connection conn = DriverManager.getConnection(url, props);
                 this.conn = conn;
