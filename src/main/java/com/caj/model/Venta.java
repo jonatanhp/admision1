@@ -99,7 +99,7 @@ public class Venta {
 	}
 	
 	
-
+	@JsonBackReference
 	public Cuenta getCuenta() {
 		return cuenta;
 	}

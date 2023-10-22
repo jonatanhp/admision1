@@ -52,8 +52,8 @@ public class Cuenta {
 	@JoinColumn(name = "id_paciente", nullable = false)
 	private Paciente paciente;
 	
-	@OneToMany(mappedBy = "cuenta", cascade = { CascadeType.PERSIST, CascadeType.MERGE,
-			CascadeType.REMOVE }, fetch = FetchType.EAGER, orphanRemoval = true)
+	@OneToMany(mappedBy = "cuenta", cascade = { CascadeType.ALL,
+			 }, fetch = FetchType.EAGER, orphanRemoval = true)
 	private Set<Venta> ventas;
 
 	public Integer getIdcuenta() {

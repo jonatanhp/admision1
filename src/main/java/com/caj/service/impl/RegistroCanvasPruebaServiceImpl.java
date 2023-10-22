@@ -74,7 +74,7 @@ public class RegistroCanvasPruebaServiceImpl implements IRegistroCanvasPruebaSer
 	    DBConn dbconn = new DBConn();
 		
 		// TODO Auto-generated method stub
-		System.out.println("llamado");
+		//System.out.println("llamado");
 		 boolean success = false;
 	        sql="update registro_canvas_prueba "
 	                + "set " + regis.getCampo() + " = '" + regis.getValor() + "' where id_cita = '" + regis.getId_cita() + "' ";
